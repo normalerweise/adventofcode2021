@@ -73,8 +73,25 @@ class AdventOfCode2021Suite extends AnyWordSpec with Matchers {
     }
 
     "executed with puzzle data" should {
-      "return as the power consumption of the submarine" in {
-        BinaryDiagnostic.powerConsumptionBasedOnDiagnosticReport shouldBe 1
+      "return 3148794 as the power consumption of the submarine" in {
+        BinaryDiagnostic.powerConsumptionBasedOnDiagnosticReport shouldBe 3148794
+      }
+    }
+  }
+
+  "Day 3 (Binary Diagnostic) - Part 2" when {
+
+    "executed with example data" should {
+      "return 230 as the life support rating of the submarine" in {
+        BinaryDiagnostic.lifeSupportRatingBasedOnReport(
+          exampleDiagnosticReport
+        ) shouldBe 230
+      }
+    }
+
+    "executed with puzzle data" should {
+      "return  as the life support rating of the submarine" in {
+        BinaryDiagnostic.lifeSupportRatingBasedOnDiagnosticReport shouldBe 1
       }
     }
   }
