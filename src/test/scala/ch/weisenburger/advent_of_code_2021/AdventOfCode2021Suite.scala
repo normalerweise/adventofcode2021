@@ -3,9 +3,10 @@ package ch.weisenburger.advent_of_code_2021
 import org.scalatest.funsuite.AnyFunSuite
 import day1.SonarSweep
 import day2.{Dive, Direction, Command}
+import day3.BinaryDiagnostic
+import day4.Bingo
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should._
-import ch.weisenburger.advent_of_code_2021.day3.BinaryDiagnostic
 
 class AdventOfCode2021Suite extends AnyWordSpec with Matchers {
 
@@ -90,10 +91,41 @@ class AdventOfCode2021Suite extends AnyWordSpec with Matchers {
     }
 
     "executed with puzzle data" should {
-      "return  as the life support rating of the submarine" in {
-        BinaryDiagnostic.lifeSupportRatingBasedOnDiagnosticReport shouldBe 1
+      "return 2795310 as the life support rating of the submarine" in {
+        BinaryDiagnostic.lifeSupportRatingBasedOnDiagnosticReport shouldBe 2795310
       }
     }
+  }
+
+  "Day (Giant Squid) - Part 1" when {
+
+    "executed with example data" should {
+      "return 4512 as the Bingo Game final score" in {
+        Bingo.parseAndPlayRawGame(exampleBingoGame) shouldBe 4512
+      }
+    }
+
+    "executed with puzzle data" should {
+      "return 14093 as the Bingo Game final score" in {
+        Bingo.parseAndPlayRawGame(Bingo.readRawBingoGame()) shouldBe 14093
+      }
+    }
+  }
+
+  "Day (Giant Squid) - Part 2" when {
+
+    "executed with example data" should {
+      "return 1924 as the Bingo Game final score" in {
+        Bingo.parseAndPlayRawGame(exampleBingoGame, Bingo.Game.whichBoardHasBingoLast) shouldBe 1924
+      }
+    }
+
+    "executed with puzzle data" should {
+      "return 17388 as the Bingo Game final score" in {
+        Bingo.parseAndPlayRawGame(Bingo.readRawBingoGame(), Bingo.Game.whichBoardHasBingoLast) shouldBe 17388
+      }
+    }
+
   }
 
   private def exampleDiagnosticReport =
@@ -123,4 +155,26 @@ class AdventOfCode2021Suite extends AnyWordSpec with Matchers {
       Command(Forward, 2)
     ).iterator
 
+  private def exampleBingoGame =
+    Seq(
+      "7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1",
+      "",
+      "22 13 17 11  0",
+      " 8  2 23  4 24",
+      "21  9 14 16  7",
+      " 6 10  3 18  5",
+      " 1 12 20 15 19",
+      "",
+      " 3 15  0  2 22",
+      " 9 18 13 17  5",
+      "19  8  7 25 23",
+      "20 11 10 24  4",
+      "14 21 16 12  6",
+      "",
+      "14 21 17 24  4",
+      "10 16 15  9 19",
+      "18  8 23 26 20",
+      "22 11 13  6  5",
+      " 2  0 12  3  7"
+    )
 }
