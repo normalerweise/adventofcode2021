@@ -5,6 +5,7 @@ import day1.SonarSweep
 import day2.{Dive, Direction, Command}
 import day3.BinaryDiagnostic
 import day4.Bingo
+import day5.HydrothermalVenture
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should._
 
@@ -112,17 +113,55 @@ class AdventOfCode2021Suite extends AnyWordSpec with Matchers {
     }
   }
 
-  "Day (Giant Squid) - Part 2" when {
+  "Day 4 (Giant Squid) - Part 2" when {
 
     "executed with example data" should {
       "return 1924 as the Bingo Game final score" in {
-        Bingo.parseAndPlayRawGame(exampleBingoGame, Bingo.Game.whichBoardHasBingoLast) shouldBe 1924
+        Bingo.parseAndPlayRawGame(
+          exampleBingoGame,
+          Bingo.Game.whichBoardHasBingoLast
+        ) shouldBe 1924
       }
     }
 
     "executed with puzzle data" should {
       "return 17388 as the Bingo Game final score" in {
-        Bingo.parseAndPlayRawGame(Bingo.readRawBingoGame(), Bingo.Game.whichBoardHasBingoLast) shouldBe 17388
+        Bingo.parseAndPlayRawGame(
+          Bingo.readRawBingoGame(),
+          Bingo.Game.whichBoardHasBingoLast
+        ) shouldBe 17388
+      }
+    }
+
+  }
+
+  "Day 5 (Hydrothermal Venture) - Part 1" when {
+
+    "executed with example data" should {
+      "return a total of 5 points with overlap of at least two lines" in {
+        HydrothermalVenture.determineNumberOfPointsWhereAtLeastTwoHorizontalOrVerticalLinesOverlap(exampleHydrothermalVents) shouldBe 5
+      }
+    }
+
+    "executed with puzzle data" should {
+      "return a total of 6113 points with overlap of at least two lines" in {
+         HydrothermalVenture.determineNumberOfPointsWhereAtLeastTwoHorizontalOrVerticalLinesOverlap(HydrothermalVenture.readRawlineSegments()) shouldBe 6113
+      }
+    }
+
+  }
+
+    "Day 5 (Hydrothermal Venture) - Part 2" when {
+
+    "executed with example data" should {
+      "return a total of 12 points with overlap of at least two lines" in {
+        HydrothermalVenture.determineNumberOfPointsWhereAtLeastLinesOverlap(exampleHydrothermalVents) shouldBe 12
+      }
+    }
+
+    "executed with puzzle data" should {
+      "return a total of 1 points with overlap of at least two lines" in {
+         HydrothermalVenture.determineNumberOfPointsWhereAtLeastLinesOverlap(HydrothermalVenture.readRawlineSegments()) shouldBe 1
       }
     }
 
@@ -177,4 +216,19 @@ class AdventOfCode2021Suite extends AnyWordSpec with Matchers {
       "22 11 13  6  5",
       " 2  0 12  3  7"
     )
+
+  private def exampleHydrothermalVents =
+    Seq(
+      "0,9 -> 5,9",
+      "8,0 -> 0,8",
+      "9,4 -> 3,4",
+      "2,2 -> 2,1",
+      "7,0 -> 7,4",
+      "6,4 -> 2,0",
+      "0,9 -> 2,9",
+      "3,4 -> 1,4",
+      "0,0 -> 8,8",
+      "5,5 -> 8,2"
+    ).iterator
+
 }
